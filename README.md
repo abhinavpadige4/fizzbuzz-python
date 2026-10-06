@@ -1,53 +1,57 @@
-# FizzBuzz in Python
+# FizzBuzz (Python)
 
-A clean Python implementation of the classic FizzBuzz interview problem.
+Classic FizzBuzz implementation in Python with a small test block.
 
 ## Rules
 
-- Multiples of **3** → `Fizz`
-- Multiples of **5** → `Buzz`
-- Multiples of **both 3 and 5** → `FizzBuzz`
-- Otherwise → the number itself
+| Condition                | Output     |
+| ------------------------ | ---------- |
+| Multiple of 3            | `Fizz`     |
+| Multiple of 5            | `Buzz`     |
+| Multiple of both (15)    | `FizzBuzz` |
+| Otherwise                | the number |
 
 ## Files
 
-- `fizzbuzz.py` — Implementation with `fizzbuzz(n)` function, a `run_fizzbuzz(start, end)` runner, and a `run_tests()` suite of `assert` statements covering all four cases.
+- `fizzbuzz.py` — implementation + self-tests
 
 ## Usage
 
-Run the script directly to execute the test suite and then print FizzBuzz for 1–100:
-
 ```bash
+# Print FizzBuzz for 1..100 (default)
 python fizzbuzz.py
+
+# Print FizzBuzz for a custom range
+python fizzbuzz.py 1 20
 ```
 
-Or import the function:
+## API
 
 ```python
-from fizzbuzz import fizzbuzz
+from fizzbuzz import fizzbuzz, fizzbuzz_range, run
 
-print(fizzbuzz(3))   # Fizz
-print(fizzbuzz(5))   # Buzz
-print(fizzbuzz(15))  # FizzBuzz
-print(fizzbuzz(7))   # 7
+fizzbuzz(15)        # -> "FizzBuzz"
+fizzbuzz(7)         # -> "7"
+fizzbuzz_range(1, 5)  # -> ["1", "2", "Fizz", "4", "Buzz"]
+run(1, 100)         # prints 1..100
 ```
 
 ## Tests
 
-The `run_tests()` function asserts the expected output for a wide range of inputs:
+The file includes an `assert`-based test block at the bottom that runs after
+the main output. It covers:
 
-- Multiples of 3 only (3, 6, 9, 12, 18)
-- Multiples of 5 only (5, 10, 20, 25)
-- Multiples of both (15, 30, 45, 60, 75, 90)
-- Plain numbers (1, 2, 4, 7, 8, 11, 13, 97, 100)
+- `3 -> "Fizz"`
+- `5 -> "Buzz"`
+- `15 -> "FizzBuzz"`
+- `7 -> "7"`
+- plus a few extra edge cases (`1`, `2`, `9`, `10`, `30`, `100`) and the
+  `fizzbuzz_range` helper.
 
-Run the tests in isolation:
+Run the file to see the assertions execute:
 
 ```bash
-python -c "from fizzbuzz import run_tests; run_tests()"
+python fizzbuzz.py
+# ...
+# All FizzBuzz assertions passed.
 ```
-
-## Complexity
-
-- **Time:** O(1) per call (constant-time modulo checks)
-- **Space:** O(1)
